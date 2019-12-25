@@ -1,0 +1,10 @@
+asgiref==3.2.3
+Django==3.0.1
+django-chartjs==1.5.0
+django-material==1.6.0
+pytz==2019.3
+selenium==3.141.0
+six==1.13.0
+sqlparse==0.3.0
+urllib3==1.25.7
+yapf==0.29.0
