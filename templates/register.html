@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load material_form %}
+
+{% block content %}
+<center><h2>Cadastro de nova conta - {% if request.resolver_match.view_name == 'registrarempresa' %} Empresa {% else %} Candidato {% endif %}</h2></center>
+
+<form method="post">
+    {% csrf_token %}
+    {{form.media.js}}
+    {% form form=form %}
+    {% endform %}
+    <center><button class="btn" type="submit">Enviar</button></center>
+</form>
+{% endblock %}

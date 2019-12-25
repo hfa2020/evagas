@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<center><h1>{{ object.nome }}</h1></center>
+
+<center><h4>Candidatos:</h4></center>
+<ul class="collection">
+{% for c in object.candidaturas_set.all %}
+    <li class="collection-item">
+        <i class="material-icons teal-text tooltipped" data-position="bottom" data-tooltip="Nome do Candidato">account_box</i>{{ c.candidato }}
+        <br>
+        <i class="material-icons teal-text tooltipped" data-position="bottom" data-tooltip="Experiência declarada">assignment</i>{{c.candidato.experiencia}}
+        <br>
+        <i class="material-icons teal-text tooltipped" data-position="bottom" data-tooltip="Salário Pretendido">account_balance_wallet</i>R$ {{ c.salario_pretendido }}
+        <br>
+        <i class="material-icons teal-text tooltipped" data-position="bottom" data-tooltip="Escolaridade Declarada">school</i>{{c.candidato.get_ult_escola_display}}
+        <br>
+        {% if c.score == 0 %}
+        Pontuação: <i class="material-icons teal tooltipped" data-position="bottom" data-tooltip="Pontuação bônus">exposure_zero<i/> 
+        {% elif c.score == 1 %}
+            Pontuação: <i class="material-icons teal-text tooltipped" data-position="bottom" data-tooltip="Pontuação bônus">looks_one</i> 
+        {% elif c.score == 2 %}
+            Pontuação: <i class="material-icons teal-text tooltipped" data-position="bottom" data-tooltip="Pontuação bônus">looks_two</i>
+        {% endif %}
+    </li>
+{% endfor %}
+</ul>
+{% endblock %}

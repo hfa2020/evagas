@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="center">Gráficos</h1>
+<canvas id="myChart" width="400" height="300"></canvas>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+<script type="text/javascript">
+ $.get('{% url "charts" %}', function(data) {
+     var ctx = $("#myChart").get(0).getContext("2d");
+     new Chart(ctx, {
+         type: 'line', data: data
+     });
+ });
+</script>
+{% endblock %}

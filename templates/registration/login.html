@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load material_form %}
+{% block content %}
+<h2>Entrar com conta</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.media.js }}
+    {% form form=form %}
+    {% endform %}
+    <center><button class="btn" type="submit">Enviar</button></center>
+</form>
+{% endblock %}

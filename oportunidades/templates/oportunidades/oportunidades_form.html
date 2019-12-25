@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load material_form %}
+{% block content %}
+{% if request.resolver_match.view_name == 'Createvaga' %}
+<center><h1>Criar nova vaga</h1></center>
+{% elif request.resolver_match.view_name == 'UpdateVaga' %}
+<center><h1>Editar vaga</h1></center>
+{% elif request.resolver_match.view_name == 'DeletaVaga' %}
+<center><h1>Remover vaga</h1></center>
+{% endif %}
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.media.js }}
+    {% form form=form %}
+    {% endform %}
+    <center>
+    {% if request.resolver_match.view_name == 'DeletaVaga' %}
+    <button class="btn" type="submit">Remover</button>
+    {% else %}
+    <button class="btn" type="submit">Enviar</button>
+    {% endif %}
+    </center>
+</form>
+{% endblock %}

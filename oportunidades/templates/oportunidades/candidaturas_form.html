@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load material_form %}
+{% block content %}
+
+{% if request.resolver_match.view_name == 'novaCandidatura' %}
+<center><h1>Inscrição para {{vaga}}</h1></center>
+{% elif request.resolver_match.view_name == 'Cancelar' %}
+<center><h1>Cancelar Inscrição</h1></center>
+{% endif %}
+
+<form method="post">
+    {% csrf_token %}
+    {% form form=form %}
+    {% endform %}
+    <center>
+    {% if request.resolver_match.view_name == 'Cancelar' %}
+    <button class="btn" type="submit">Cancelar</button>
+    {% else %}
+    <button class="btn" type="submit">Confirmar</button>
+    {% endif %}
+    </center>
+</form>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endblock %}

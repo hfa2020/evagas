@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Lista de Vagas</h1>
+
+<ul class="collapsible">
+{% for o in object_list %}
+    <li>
+        <div class="collapsible-header"><i class="material-icons">folder_special</i>{{o}}
+            {% if request.user.is_empresa %}
+            <span class="badge teal-text">{{o.NmrCandidaturas}} candidatos</span>
+            <span><a href="{% url 'VagaInfo' pk=o.id %}"><i class="material-icons teal-text tooltipped" data-position="bottom" data-tooltip="Acessar detalhes da vaga">details</i></a></span>
+        <span><a href="{% url 'UpdateVaga' pk=o.id %}"><i class="material-icons orange-text">edit</i></a></span>
+        <span><a href="{% url 'DeletaVaga' pk=o.id %}"><i class="material-icons red-text">delete</i></a></span>
+        {% else %}
+        <span class="badge"><a href="{% url 'novaCandidatura' pk=o.id %}"><i class="material-icons orange-text">group_add</i></a></span>
+        {% endif %}
+        </div>
+
+        <div class="collapsible-body"><span>Requisitos:<br>{{o.requisitos}}.</span></div>
+    </li>
+{% endfor %}
+</ul>
+
+{% if request.user.is_empresa %}
+<div class="fixed-action-btn">
+    <a href="{% url 'Createvaga' %}" class="btn-floating red">
+        <i class="material-icons">
+            add
+        </i>
+    </a>
+</div>
+{% endif %}
+{% endblock %}
